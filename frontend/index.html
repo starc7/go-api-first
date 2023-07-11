@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee | Form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- Showing successful submission message -->
+    <div id="message"></div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="form-box">
+            <h1>Employee Form</h1>
+            <form action="http://localhost:8080/submit" method="POST" enctype="multipart/form-data" onsubmit="submitForm(event)">
+
+            <!-- Employee ID -->
+            <label for="empid">Employee ID:</label>
+            <input type="text" name="empid" id="empid" maxlength="6" placeholder="012345" required> <br><br>            
+
+            <!-- Full Name of Employess -->
+            <label for="fullname">Full Name:</label>
+            <input type="text" name="fullname" id="fullname" placeholder="John Doe" required> <br><br>
+
+            <!-- Gender of Employee -->
+            <label for="gender">Gender:</label>
+                <label for="male">
+                    <input type="radio" name="gender" id="male" value="Male" required>
+                    Male
+                </label>
+                <label for="female">
+                    <input type="radio" name="gender" id="female" value="Female">
+                    Female
+                </label>
+                <label for="others">
+                    <input type="radio" name="gender" id="other" value="Other">
+                    Other
+                </label><br><br>
+
+            <!-- Experience(Date) of Service -->
+            <label for="experience">Experience:</label>
+            <input type="date" min="1980-01-01" name="expstart" id="expstart" required>
+            <span class="file-size-info">Please enter starting date of service</span>
+            <input type="date" name="expend" id="expend" required>
+            <span class="file-size-info">Please enter ending date of service</span> <br><br>
+
+            <!-- Mobile No. of Employee -->
+            <label for="mobile">Mobile No.</label>
+            <input type="tel" name="mobile" id = "mobile" placeholder="0123456789" pattern="[0-9]{10}" maxlength="10" required>
+
+            <!-- Team of Employee -->
+            <label for="team">Team:</label>
+            <select name="team" id="team" required>
+                <option value="AWS">AWS</option>
+                <option value="Azure">Azure</option>
+                <option value="CultureOps">CultureOps</option>
+                <option value="Platform">Platform</option>
+                <option value="Revenueops">RevenueOps</option>
+                <option value="SRE">SRE</option>
+            </select> <br><br>
+
+            <!-- Resume of Employee -->
+            <label for="resume">Resume:</label>
+            <input type="file" name="resume" id="resume" accept=".pdf,.png" onchange="validateFileSize(this)" required> 
+            <span class="file-size-info"> (Max file size: 15MB)</span><br><br>
+
+            <!-- Email of Employee -->
+            <label for="email">Email ID:</label>
+            <input type="email" name="email" id="email" required placeholder="xyz@abc.com">
+            <span id="error-message"></span> <br><br>
+            
+            <!-- Submit and Reset button -->
+            <button type="submit" id="submit">Submit</button>
+            <button type="reset">Reset</button>
+
+            </form>
+
+            <!-- Button to get Employees data -->
+            <button type="button" onclick="fetchData()">Get Data</button>
+        </div>
+        <br>
+        
+
+        <!-- Table of Employees -->
+        <div class="table-box" id="table-container">
+
+            <h1>Employees Data</h1>
+            <table id="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Experience Start</th>
+                    <th>Experience End</th>
+                    <th>Mobile Number</th>
+                    <th>Team</th>
+                    <th>Resume</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Table rows will be dynamically populated here -->
+                </tbody>
+              </table>
+        </div>
+    </div>
+    
+    <script src="./scripts.js"></script>
+</body>
+</html>
